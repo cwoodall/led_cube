@@ -22,9 +22,8 @@ void clock_cube()
  * uint8_t's are used. (NOTE: This could be compressed to using 3 uint8_ts instead
  * of 5, but it is not... Deal with it)
  *
- * TODO
  */
-void load_cube(uint8_t buf[5]) 
+void load_cube(uint8_t *buf) 
 {
     static int i = 0;
     PORTC = 0; // Turn off all GND planes so that you don't see "shadows"
@@ -41,7 +40,7 @@ void load_cube(uint8_t buf[5])
     PORTC = buf[4];
 }
 
-void load_frame(uint8_t frames[8], uint8_t frame_delay) 
+void load_frame(uint8_t *frame, uint8_t _delay) 
 {
     uint8_t buf[5] = {0};
     uint8_t i = 0;
@@ -49,11 +48,13 @@ void load_frame(uint8_t frames[8], uint8_t frame_delay)
     {
         // Fun with bitwise logics!
         //
-        // Here we set buf[0:3] with their appropriate values for each horizontal ground plane.
-        // buf[0] and buf[1] will get set on odd values of i (~i&0x01 will evaluate to 1 for 
-        // odd numbers and 0 for even). 
-        // buf[2] and buf[3] will be set for odd numbers (i&0x01 will evaluate to 1 for evens 0 
-        // for odds).
+        // Here we set buf[0:3] with their appropriate values for each 
+        // horizontal ground plane.
+        // 
+        // buf[0] and buf[1] will get set on odd values of i (~i&0x01 
+        // will evaluate to 1 for odd numbers and 0 for even). buf[2] 
+        // and buf[3] will be set for odd numbers (i&0x01 will evaluate 
+        // to 1 for evens 0 for odds).
         //
         // buf[4] gets set to indicate which plane is being loaded:
         //   index  |  plane
@@ -65,18 +66,21 @@ void load_frame(uint8_t frames[8], uint8_t frame_delay)
         //     5    |    2
         //     6    |    3
         //     7    |    3
+        // 
+        // 0 is the lowest plane and 3 is the top plane. The rest of the planes 
+        // are labeled as you would assume
         //
-        // This can be conveniently represented by a shift one to the right and then shifting a 1
-        // to the right by the plane number
-        buf[0] = (frames[i]) * (~i&0x01);
-        buf[1] = (frames[i]>>4) * (~i&0x01);
-        buf[2] = (frames[i]) * (i&1);
-        buf[3] = (frames[i]>>4) * (i&0x01);
+        // This can be conveniently represented by a shift one to the right and 
+        // then shifting a 1 to the right by the plane number.
+        buf[0] = (frame[i]) * (~i&0x01);
+        buf[1] = (frame[i]>>4) * (~i&0x01);
+        buf[2] = (frame[i]) * (i&1);
+        buf[3] = (frame[i]>>4) * (i&0x01);
         buf[4] = (1<<(i>>1));
     
         // load into the buffer
         load_cube(buf);
-        delayMicroseconds(frame_delay);
+        delayMicroseconds(_delay);
     }
 }
 

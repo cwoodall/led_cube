@@ -60,14 +60,19 @@ void loop()
         }
     }
 
-    for (i = 0; i < 64; i += 1)
+    for (i = 0; i < 16; i += 1)
     {
         for (j = 0; j < 8; j += 1) {
-            frame1[j] += 1;
+            frame1[j] += 0x11;
         }
         for (j = 0; j < 100; j += 1) {
             load_frame(frame1, FRAME_RATE);
         }
+    }
+    
+    for (j = 0; j < 8; j += 1)
+    {
+      frame1[j] = 0;
     }
 }
 
