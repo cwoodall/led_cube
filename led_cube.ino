@@ -11,53 +11,52 @@
 
 uint8_t buf[5] = { 0, 0, 0, 0, 0 };
 
-uint8_t frames[4][8] = {
-    { 0xA5, 0xA5,
-      0xA5, 0xA5,
-      0xA5, 0xA5,
-      0xA5, 0xA5 },
-    { 0x5A, 0x5A,
-      0x5A, 0x5A,
-      0x5A, 0x5A,
-      0x5A, 0x5A },
+/*uint8_t frames[4][8] = {
+    { 0x01, 0x00,
+      0x00, 0x01,
+      0x00, 0x00,
+      0x00, 0x00 },
+    { 0x10, 0x00,
+      0x00, 0x10,
+      0x00, 0x00,
+      0x00, 0x00 },
+      };*/
+
+uint8_t frame[8] = {
+    0xa5, 0xa5,
+    0x5a, 0x5a,
+    0xa5, 0xa5,
+    0x5a, 0x5a,
 };
 
-uint8_t frame1[8] = {0};
 
 void setup() 
 {
+    Serial.begin(9600);
+
     initialize_cube();
     delay(100);  
 }
 
 void loop() 
 {
-    int i = 0;
-    int j = 0;
+    static int i = 0;
+    static int j = 0;
+    
 
-    for (i = 0; i < 2; i += 1) 
+/*    for (i = 0; i < 2; i += 1) 
     {
-        for (j = 0; j < 1000; j += 1)
+        for (j = 0; j < 500; j += 1)
         {
             load_frame(frames[i], FRAME_RATE);
         }
     }
-/*
-    for (i = 0; i < 16; i += 1)
+*/  
+    for (j=0; j < 500; j += 1)
     {
-        for (j = 0; j < 8; j += 1) {
-            frame1[j] += 0x11;
-        }
+        load_frame(frame, FRAME_RATE);
+    }
 
-        for (j = 0; j < 100; j += 1) {
-            load_frame(frame1, FRAME_RATE);
-        }
-    }
-    for (j = 0; j < 8; j += 1)
-    {
-      frame1[j] = 0;
-    }
-*/
 }
 
 
