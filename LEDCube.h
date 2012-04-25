@@ -1,5 +1,23 @@
 #include "Arduino.h"
 
+/*
+class LEDCube
+{
+    volatile uint8_t *clock_port;
+    volatile uint8_t clock_pin;
+    volatile uint8_t *gnd_port;
+    volatile uint8_t *shift_port;
+public:
+    LEDCube(volatile uint8_t *clk, volatile uint8_t clk_p, 
+                     volatile uint8_t *gnd, volatile uint8_t *shift);
+
+    void clock();
+    void writeFrame();
+    void writeBuffer();
+    void clear();
+};
+*/
+
 /** 
  * void clock_cube() 
  * Just pulls shift register pin low then high.
@@ -9,6 +27,7 @@
  */
 void clock_cube();
 
+void initialize_cube();
 
 /**
  * void load_cube(uint8_t buf[5]) 

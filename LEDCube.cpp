@@ -1,4 +1,35 @@
 #include "LEDCube.h"
+/*
+LEDCube::LEDCube(volatile uint8_t *clk, volatile uint8_t clk_p, 
+                 volatile uint8_t *gnd, volatile uint8_t *shift)
+{
+    clk_port = clk;
+    clock_pin = clk_p;
+    gnd_port = gnd;
+    shift_port = shift;
+
+    clk_port |= (1 << clock_pin);
+    gnd_port |= 0x0F;
+    shift_port |= 0x0F;
+
+    this->clear();
+}
+
+void LEDCube::clock()
+{
+    this->clock_port &= ~(0<<(this->clock_pin));
+    this->clock_port |= 1<<(this->clock_pin);
+}
+*/
+
+void initialize_cube() 
+{
+    DDRB |= 0x0F;
+    DDRC |= 0x0F;
+    DDRD |= 0x80;
+    
+    clear_cube();
+}
 
 /** 
  * void clock_cube() 
@@ -9,8 +40,8 @@
  */
 void clock_cube() 
 {
-    PORTD = 0x00; // Pull shift register clock pin low
-    PORTD = 0xF0; // Pull shift register clock pin high
+    PORTD &= ~(1<<7); // Pull shift register clock pin low
+    PORTD |= (1<<7); // Pull shift register clock pin high
 }
 
 /**
@@ -26,18 +57,19 @@ void clock_cube()
 void load_cube(uint8_t *buf) 
 {
     static int i = 0;
-    PORTC = 0; // Turn off all GND planes so that you don't see "shadows"
+    PORTC &= 0xF0; // Turn off all GND planes so that you don't see "shadows"
     // Load in new "rows"
     
     for (i = 0; i < 4; i++)
     {
-        PORTB = buf[i];
+        PORTB &= 0xF0;
+        PORTB |= 0x0F & buf[i];
         clock_cube();
     }
-    
+
     delayMicroseconds(2);
     // Turn on appropriate GND planes
-    PORTC = buf[4];
+    PORTC |= 0x0F & buf[4];
 }
 
 void load_frame(uint8_t *frame, uint8_t _delay) 
