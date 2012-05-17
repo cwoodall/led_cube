@@ -3237,21 +3237,21 @@ Source: www.kingbright.com</description>
 <part name="P+1" library="SparkFun" deviceset="VCC" device=""/>
 <part name="P+2" library="SparkFun" deviceset="VCC" device=""/>
 <part name="T2" library="adafruit" deviceset="2N2222" device=""/>
-<part name="R1" library="SparkFun" deviceset="RESISTOR" device="0603-RES"/>
+<part name="R1" library="SparkFun" deviceset="RESISTOR" device="0603-RES" value="2.2K"/>
 <part name="SUPPLY2" library="supply2" deviceset="GND" device=""/>
-<part name="R5" library="SparkFun" deviceset="RESISTOR" device="0603-RES"/>
+<part name="R5" library="SparkFun" deviceset="RESISTOR" device="0603-RES" value="100"/>
 <part name="T1" library="adafruit" deviceset="2N2222" device=""/>
-<part name="R2" library="SparkFun" deviceset="RESISTOR" device="0603-RES"/>
+<part name="R2" library="SparkFun" deviceset="RESISTOR" device="0603-RES" value="2.2K"/>
 <part name="SUPPLY3" library="supply2" deviceset="GND" device=""/>
-<part name="R3" library="SparkFun" deviceset="RESISTOR" device="0603-RES"/>
+<part name="R3" library="SparkFun" deviceset="RESISTOR" device="0603-RES" value="100"/>
 <part name="T3" library="adafruit" deviceset="2N2222" device=""/>
-<part name="R4" library="SparkFun" deviceset="RESISTOR" device="0603-RES"/>
+<part name="R4" library="SparkFun" deviceset="RESISTOR" device="0603-RES" value="2.2K"/>
 <part name="SUPPLY4" library="supply2" deviceset="GND" device=""/>
-<part name="R6" library="SparkFun" deviceset="RESISTOR" device="0603-RES"/>
+<part name="R6" library="SparkFun" deviceset="RESISTOR" device="0603-RES" value="100"/>
 <part name="T4" library="adafruit" deviceset="2N2222" device=""/>
-<part name="R7" library="SparkFun" deviceset="RESISTOR" device="0603-RES"/>
+<part name="R7" library="SparkFun" deviceset="RESISTOR" device="0603-RES" value="2.2K"/>
 <part name="SUPPLY5" library="supply2" deviceset="GND" device=""/>
-<part name="R8" library="SparkFun" deviceset="RESISTOR" device="0603-RES"/>
+<part name="R8" library="SparkFun" deviceset="RESISTOR" device="0603-RES" value="100"/>
 <part name="LED1" library="led" deviceset="LED" device=""/>
 <part name="LED2" library="led" deviceset="LED" device=""/>
 <part name="LED3" library="led" deviceset="LED" device=""/>
