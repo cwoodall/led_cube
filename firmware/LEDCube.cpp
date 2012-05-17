@@ -24,9 +24,9 @@ void LEDCube::clock()
 
 void initialize_cube() 
 {
-    DDRB |= 0x0F;
-    DDRC |= 0x0F;
-    DDRD |= 0x80;
+  DDRB |= 0x0F; //pins 8 through 11
+  DDRC |= 0x0F; //pins 14 through 17
+  DDRD |= 0x80; //pin 7
     
     clear_cube();
 }
